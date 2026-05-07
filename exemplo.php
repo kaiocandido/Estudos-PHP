@@ -13,7 +13,7 @@
     <title>Document</title>
 </head>
 <body>
-    <header> 
+    <header>
         <h1><?php echo $header ?></h1>
     </header>
 

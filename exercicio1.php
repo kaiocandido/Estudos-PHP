@@ -7,9 +7,9 @@
 $logado = true;
 $cargo = "chefe";
 
-if ($logado == true && ($cargo == "adm" || $cargo == "chefe" )){
-    echo("Logado com sucesso!!");
+if ($logado && ($cargo == "adm" || $cargo == "chefe" )){
+    echo"Logado com sucesso!!";
 }else {
-    echo("Erro no login!!!");
+    echo"Erro no login!!!";
 }
 

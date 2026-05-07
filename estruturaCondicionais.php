@@ -91,9 +91,27 @@
 
 $idade = 20;
 if ($idade >= 18) {
-    echo("Voce tem " . $idade . " esta apto a dirigir!!");
-} elseif ($idade >= 16) {
-    echo("Voce mora no brasil com essa " . $idade . " só é permitido andar de patins!!");
+    echo"Voce tem " . $idade . " esta apto a dirigir!!";
+} elseif($idade >= 16) {
+    echo"Voce mora no brasil com essa " . $idade . " só é permitido andar de patins!!";
 } else {
-    echo("KKKKK boa sorte jaja começa a crescer a barba!!!");
+    echo"KKKKK boa sorte jaja começa a crescer a barba!!!";
 }
+
+// SWITCH CASE
+?>
+
+<?php
+switch ($idade) {
+    case 20:
+        echo"Parabens vc é maior de idade!!";
+        break;
+    case 17:
+        echo"voce é menor de idade";
+        break;
+    default:
+        echo"Erro digite um numero valido!";
+        break;
+}
+
+?>
