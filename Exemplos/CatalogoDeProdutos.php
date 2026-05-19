@@ -4,7 +4,7 @@
         "Celular" => ["preco" => 5500, "Estoque" => 20],
         "Geladeira" => ["preco" => 3800, "Estoque" => 4],
         "Mesa" => ["preco" => 500, "Estoque" => 2],
-    ];
+    ]; 
 
 
     function desconto($preco, $precoDescontoFixo): float {
@@ -20,6 +20,8 @@
        return $valorFinal;
     };
 
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +42,7 @@
     </ul>
 
     <H2>Resumo do carrinho</H2>
+
 
 </body>
 </html>
