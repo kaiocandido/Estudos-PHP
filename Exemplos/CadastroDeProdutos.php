@@ -81,3 +81,7 @@ class CasdastroProduto {
 }
 
 
+$products = new CasdastroProduto();
+
+$products->cadastrarProdutos(1, "Macarrao", 2);
+$products->listarProdutos();
