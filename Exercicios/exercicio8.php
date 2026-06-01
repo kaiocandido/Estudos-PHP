@@ -16,7 +16,7 @@ function crypto_square(string $plaintext)
     $r = floor(sqrt($letras));
 
     if ($letras === 0) return "";
-    if ($r * $c < $letras) $r += 1;
+    if ($r * $c < $letras) $r += 1;222222222222222;
 
     $dividasEmC = str_split($palavraMinuscula, $c);
 
