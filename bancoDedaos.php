@@ -40,6 +40,63 @@ TIMESTAMP - Data/hora com fusio Horario automatico Ex:  2025-04-25 15:30:00 - SP
 TIME - Hora apenas Ex: 15:30:00 
 YEAR - Ano apenas Ex: 2025
 
-TIPOS DE DADOS 
+TIPOS DE DADOS CHAVES 
 
+Chave Primaria - Indentifica de forma unica cada linha em uma tabela. Valores devem ser unicos e não nulos
+
+CREATE TABLE alunos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100);
+)
+
+Chave Estrangeira - Cria relacionamentos conectando tabelas refrenciando a chave primaria da outra
+
+CREATE TABLE clientes(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100);
+)
+
+CREATE TABLE pedidos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT;
+    // ADICIONANDO CHAVE ESTRANGEIRA
+    FOREIGN KEY (client_id) REFERENCES clientes(id)
+)
+
+
+CHave unica - Garante valores unicos, permite valores nulos, diferente da chave primaria
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100) UNIQUE;
+)
+
+Chave composta - Formar uma unica chave, usado para junções de tabelas
+
+CREATE TABLE itens_pedido (
+    pedido_id INT, 
+    produto INT,
+    quantidade INT,
+    PRIMARY KEY(pedido_id, produto_id);
+    
+    )
+
+ADICIONANDO CHAVES EM TABELAS EXISTENTES
+
+CHAVE PRIMARIA
+
+ALTER TABLE tabela ADD PRIMARY KEY (Coluna);
+
+CHAVE ESTRANGEIRA
+
+ALTER TABLE tabela ADD CONSTRAINT fk_nome FOREIGN KEY (
+    coluna_estrangeira
+) REFERENCES outra_tabela(
+    coluna_referenciada
+);
+
+CHAVE UNICA
+
+ALTER TABLE tabela ADD UNIQUE(coluna);
 */
