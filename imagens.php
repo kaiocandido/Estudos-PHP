@@ -31,6 +31,12 @@
 
     if(isset($_POST['nome'])){
         $erro = validarImagem();
+
+        if(!$erro){
+            if(!salvarImagemFisica()){
+                echo "erro ao salvar imagem";
+            }
+        }
     }
 
     function validarImagem(){
@@ -50,6 +56,34 @@
         }
 
         
+    }
+
+    function salvarImagemFisica(){
+        /* 
+            1 Pegar a extensão do arquivo original    
+            2 Gerar um nome unico para imagem 
+            3 Juntamos o novo nome com a extensão
+            4 Verificar se temos uma pasta de imagem / Se não tiver iremos criar
+            5 Mover imagem da temp para a pasta criada
+        */
+
+        $nomeOriginal = $_FILES['imagem']['name'];
+        $extensao = pathinfo($nomeOriginal, PATHINFO_EXTENSION);
+
+        $nomeUnico = uniqid('img_', true) . strtolower($extensao);
+
+        if(!is_dir('imagens/')){
+            mkdir('imagens/', 0777, true);
+        }
+
+        $imagemTemporario = $_FILES['imagem']['tmp_name'];
+        $caminhoImagem = 'imagens/'. $nomeUnico;
+
+        if(!move_uploaded_file($imagemTemporario, $caminhoImagem)){
+            return false;
+        }
+
+        return true;
     }
 
 ?>
