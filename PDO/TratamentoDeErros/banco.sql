@@ -1,0 +1,13 @@
+CREATE TABLE produtos (
+    id     INT AUTOINCREMENT PRIMARY KEY,
+    nome   VARCHAR(100),
+    codigo VARCHAR(50) UNIQUE
+);
+
+CREATE TABLE log_erros(
+    id INT AUTOINCREMENT PRIMARY KEY,
+    mensagem TEXT,
+    data_erro DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+
