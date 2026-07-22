@@ -1,0 +1,260 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --danger: #dc2626;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+    --radius: 18px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, Arial, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.14), transparent 30%),
+        var(--bg);
+    color: var(--text);
+}
+
+.container {
+    width: min(100%, 1100px);
+    margin: 0 auto;
+    padding: 48px 20px;
+}
+
+h1 {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.1;
+    margin: 0 0 12px;
+    letter-spacing: -1px;
+}
+
+h2 {
+    margin: 0 0 22px;
+    font-size: 1.35rem;
+}
+
+h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+p {
+    color: var(--muted);
+}
+
+.form-card,
+.pessoa-card {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    padding: 28px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+}
+
+.form-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.form-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 5px;
+    background: linear-gradient(90deg, #2563eb, #06b6d4, #8b5cf6);
+}
+
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
+}
+
+input[type="file"] {
+    padding: 18px;
+    border: 2px dashed #c7d2fe;
+    background: #f8faff;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+    margin-right: 14px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 15px 22px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #2563eb, #06b6d4);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.28);
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 32px rgba(37, 99, 235, 0.34);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.pessoa-card {
+    transition: 0.2s ease;
+}
+
+.pessoa-card:hover {
+    transform: translateY(-3px);
+}
+
+.pessoa-card p {
+    margin: 6px 0 0;
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.imagem-card {
+    position: relative;
+    overflow: hidden;
+    background: #f9fafb;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.imagem-card img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    transition: 0.25s ease;
+}
+
+.imagem-card:hover img {
+    transform: scale(1.06);
+}
+
+.imagem-card a {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(220, 38, 38, 0.92);
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: 0.2s ease;
+}
+
+.imagem-card:hover a {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (min-width: 800px) {
+    .form-card {
+        max-width: 760px;
+    }
+
+    button {
+        width: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 32px 14px;
+    }
+
+    .form-card,
+    .pessoa-card {
+        padding: 22px;
+    }
+
+    .galeria {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .imagem-card img {
+        height: 130px;
+    }
+}
+
+.hero {
+    margin-bottom: 34px;
+}
+
+.badge {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.12);
+    color: var(--primary);
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.subtitle {
+    max-width: 680px;
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.6;
+}
