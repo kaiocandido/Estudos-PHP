@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once __DIR__ .'/Imagens/Classes/Conexao.php';
 require_once __DIR__ .'/Imagens/Classes/Imagem.php';
 require_once __DIR__ .'/Imagens/Classes/Pessoas.php';
@@ -107,16 +109,21 @@ $pessoas = $pessoa_obj->listarPessoas();
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <?php 
-/*
+
+if(isset($_SESSION['mensagem'])){
+    $mensagem = $_SESSION['mensagem'];
+    unset($_SESSION['mensagem']);
+    ?>
     <script>
         Swal.fire({
-            icon: 'TIPO',
-            title: 'TITULO',
-            text: 'TEXTO',
+            icon: '<?php htmlspecialchars($mensagem['tipo'])?>',
+            title: '<?php htmlspecialchars($mensagem['titulo'])?>',
+            text: '<?php htmlspecialchars($mensagem['texto'])?>',
             confirmButtonText: 'OK'
         });
     </script>
-*/
+    <?php
+}
  ?>
 
 </body>

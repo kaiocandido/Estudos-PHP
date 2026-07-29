@@ -3,6 +3,13 @@
 class Imagem{
     
     private PDO $pdo;
+    private const TAMANHO_MAXIMO = 10 * 1024 * 1024;
+    private array $tiposPermitidos = [
+        'image/jpeg' => 'jpg',
+        'image/png' => 'png',
+        'image/webp' => 'webp' 
+        
+    ];
 
     public function __construct(PDO $pdo)
     {
@@ -89,5 +96,29 @@ class Imagem{
     public function incluirImagem(){
 
     }
+    
+    private function validarArquivo($arquivo){
+        if($arquivo['error' !== UPLOAD_ERR_OK]){
+            throw new Exception("Erro no upload da imagem, tente novamente mais tarde!!");
+        }
 
+        if($arquivo['size'] > self::TAMANHO_MAXIMO){
+            throw new Exception('A imagem execede o tamanho permitido!');
+        }
+
+        $tipoMime = $this->obterMimeReal($arquivo['tmp_name']);
+        
+        if(!array_key_exists($tipoMime, $this->tiposPermitidos)){
+            throw new Exception('Tipo de imagem não permitido!! Aceita apenas jpg, webp e png!!');
+        }
+
+        
+
+    }
+
+    private function obterMimeReal($arquivo){
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+
+        return $finfo->file($arquivo);
+    }
 }
