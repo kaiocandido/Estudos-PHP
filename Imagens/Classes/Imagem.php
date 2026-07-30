@@ -10,6 +10,8 @@ class Imagem{
         'image/webp' => 'webp' 
         
     ];
+    private const PASTA_UPLOAD = __DIR__ .'/../upload/pessoas';
+    private const CAINHO_PULICO = 'upload/pessoas/';
 
     public function __construct(PDO $pdo)
     {
@@ -88,22 +90,13 @@ class Imagem{
         
     }
 
-
-    public function excluir(){
-
-    }
-
-    public function incluirImagem(){
-
-    }
-    
     private function validarArquivo($arquivo){
         if($arquivo['error' !== UPLOAD_ERR_OK]){
             throw new Exception("Erro no upload da imagem, tente novamente mais tarde!!");
         }
 
         if($arquivo['size'] > self::TAMANHO_MAXIMO){
-            throw new Exception('A imagem execede o tamanho permitido!');
+            throw new Exception('A imagec execede o tamanho permitido!');
         }
 
         $tipoMime = $this->obterMimeReal($arquivo['tmp_name']);
@@ -116,9 +109,25 @@ class Imagem{
 
     }
 
-    private function obterMimeReal($arquivo){
+    private function c($arquivo){
         $finfo = new finfo(FILEINFO_MIME_TYPE);
 
         return $finfo->file($arquivo);
+    }
+
+    private function salvarUma($pessoa_id, $arquivo){
+        if(!is_dir(self::PASTA_UPLOAD)){
+            mkdir(sel::PASTA_UPLOAD, 0755, true);
+        }
+
+        $type = obterMimeReal($arquivo['tmp_name']);
+        $extensao = $this->tiposPermitidos['tipo_mime'];
+
+        $name = bin2xex(random_bytes(16)).'.'.$extensao;
+
+        $ca = self::CAINHO_PULICO.$name;
+
+
+
     }
 }
